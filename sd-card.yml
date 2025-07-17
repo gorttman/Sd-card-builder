@@ -1,0 +1,17 @@
+- name: SD Card Provisioning
+  hosts: localhost
+  gather_facts: true
+
+  vars_files:
+    - variables/common/set_environment.yml
+    - "variables/play/{{ ansible_play_name | replace(' ', '-') | lower }}-vars.yml"
+
+  pre_tasks:
+    - name: Load shared workspace
+      ansible.builtin.include_role:
+        name: shared-workspace
+
+  tasks:
+    - name: Include role to provision SD card
+      ansible.builtin.include_role:
+        name: sd-provision

@@ -1,0 +1,3 @@
+- name: shared-workspace
+  src: https://github.com/gorttman/shared-workspace.git
+  version: main

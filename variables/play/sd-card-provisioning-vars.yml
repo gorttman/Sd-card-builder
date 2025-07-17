@@ -1,0 +1,5 @@
+variable_files:
+  - name: network
+    path: common
+  - name: pi_defaults
+    path: common

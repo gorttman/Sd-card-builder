@@ -1,3 +1,4 @@
+---
 exe_environment: >-
   {%- if ansible_facts['system'] == 'Darwin' -%}MacBook
   {%- elif 'Raspberry' in ansible_facts['ansible_product_name'] | default('') -%}pi

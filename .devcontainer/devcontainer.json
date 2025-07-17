@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/hspaans/devcontainer-features/ansible-lint:2": {},     
+    "ghcr.io/devcontainers-extra/features/ansible:2": {},
+    "ghcr.io/devcontainers-extra/features/pyinfra:2": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "redhat.ansible",
+        "ms-python.python",
+        "usernamehw.errorlens",
+        "editorconfig.editorconfig"
+      ]
+    }
+  }
+}

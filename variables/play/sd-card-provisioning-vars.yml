@@ -1,3 +1,4 @@
+---
 variable_files:
   - name: network
     path: common

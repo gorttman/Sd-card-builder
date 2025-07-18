@@ -1,12 +1,3 @@
 ---
-exe_environment: >-
-  {%- if ansible_facts['system'] == 'Darwin' -%}MacBook
-  {%- elif 'Raspberry' in ansible_facts['ansible_product_name'] | default('') -%}pi
-  {%- else -%}unknown
-  {%- endif -%}
-
-pi_node: "{{ ansible_facts['hostname'] | default('unknown') }}"
-
-proxy_env:
-  http_proxy: "{{ lookup('env', 'http_proxy') | default('', true) }}"
-  https_proxy: "{{ lookup('env', 'https_proxy') | default('', true) }}"
+workspace_path: "/tmp/sd-card/{{ hostname }}"
+wpa_country: AU

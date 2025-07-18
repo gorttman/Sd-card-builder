@@ -1,0 +1,6 @@
+---
+- name: Generate wpa_supplicant.conf from template
+  ansible.builtin.template:
+    src: templates/wpa_supplicant.conf.j2
+    dest: "{{ staging_dir }}/wpa_supplicant.conf"
+    mode: '0600'

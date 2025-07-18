@@ -1,5 +1,7 @@
 *.retry
 *.pyc
 __pycache__/
-roles/*
+roles/shared*
 !roles/requirements.yml
+*.zip
+*cli*

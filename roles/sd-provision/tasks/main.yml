@@ -1,0 +1,12 @@
+---
+- name: Validate required vars
+  ansible.builtin.include_tasks: validate.yml
+
+- name: Render Wi-Fi config
+  ansible.builtin.include_tasks: generate_wifi.yml
+
+- name: Render cloud-init config
+  ansible.builtin.include_tasks: generate_cloudinit.yml
+
+- name: Generate meta-data
+  ansible.builtin.include_tasks: generate_metadata.yml

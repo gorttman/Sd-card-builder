@@ -1,6 +1,12 @@
 ---
+hostname: "pi-0"
+
+staging_dir: "/tmp/{{  ansible_play_name | replace(' ', '-') | lower }}"
+
 variable_files:
-  - name: network
-    path: common
   - name: pi_defaults
     path: common
+  - name: secrets
+    path: "config"
+  - name: "boot-config"
+    path: "config"

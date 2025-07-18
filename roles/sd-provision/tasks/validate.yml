@@ -1,0 +1,8 @@
+---
+- name: Validate required variables
+  ansible.builtin.assert:
+    that:
+      - wifi_ssid is defined
+      - wifi_psk is defined
+      - hostname is defined
+    fail_msg: "Missing required vars: wifi_ssid, wifi_psk, or hostname."

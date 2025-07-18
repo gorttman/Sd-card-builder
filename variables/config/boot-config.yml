@@ -1,0 +1,4 @@
+---
+wifi_ssid: "ARDA_HOME"
+hostname: "pi-0"
+git_repo_url: "https://github.com/example/repo.git"

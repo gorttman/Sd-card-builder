@@ -1,0 +1,7 @@
+---
+users:
+  - name: brett
+    user_shell: /bin/bash
+    password: "{{ default_pass }}"
+    groups:
+      - wheel

@@ -1,5 +1,6 @@
 ---
 - name: SD Card Provisioning
+  tags: ['provision']
   hosts: localhost
   gather_facts: true
 

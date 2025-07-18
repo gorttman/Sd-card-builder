@@ -7,6 +7,12 @@ variable_files:
   - name: pi_defaults
     path: common
   - name: secrets
-    path: "config"
-  - name: "boot-config"
-    path: "config"
+    path: config
+  - name: boot-config
+    path: config
+  - name: secrets
+    path: config
+  - name: sudo-groups
+    path: config
+  - name: users
+    path: config

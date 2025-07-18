@@ -1,0 +1,6 @@
+---
+sudo_groups:
+  - name: wheel
+    sudo: 'ALL=(ALL) NOPASSWD:ALL'
+  - name: docker
+    sudo: ''

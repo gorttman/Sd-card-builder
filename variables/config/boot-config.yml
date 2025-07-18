@@ -1,4 +1,14 @@
 ---
-wifi_ssid: "ARDA_HOME"
-hostname: "pi-0"
+hostname: pi-zero
 git_repo_url: "https://github.com/example/repo.git"
+
+timezone: Australia/Sydney
+
+wifi:
+  ssid: "ARDA_HOME"
+  password: "{{ wifi_password }}"
+  psk: "some value"
+
+playbook_path: /opt/lab-cluster/sd-init/bootstrap.yml
+
+# Used to override destinations during testing

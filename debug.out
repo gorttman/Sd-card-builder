@@ -1,0 +1,1155 @@
+Installing roles from: ./roles/requirements.yml
+Starting galaxy role install process
+- shared-workspace (main) is already installed, skipping.
+No extra vars found at variables/cli/build-sd-card-extravars.json, continuing without.
+Running: /usr/local/py-utils/bin/ansible-playbook build-sd-card.yml -i variables/cli/hosts.ini
+
+PLAY [SD Card Provisioning] ****************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Load shared workspace] ***************************************************
+included: shared-workspace for localhost
+
+TASK [shared-workspace : Load vars files] **************************************
+included: /workspaces/sd-card-builder/roles/shared-workspace/tasks/load_vars_files.yml for localhost
+
+TASK [shared-workspace : Load additional variable files if defined] ************
+ok: [localhost] => (item={'name': 'pi_defaults', 'path': 'common'})
+ok: [localhost] => (item={'name': 'secrets', 'path': 'config'})
+ok: [localhost] => (item={'name': 'boot-config', 'path': 'config'})
+ok: [localhost] => (item={'name': 'secrets', 'path': 'config'})
+ok: [localhost] => (item={'name': 'sudo-groups', 'path': 'config'})
+
+TASK [shared-workspace : Load vars files] **************************************
+included: /workspaces/sd-card-builder/roles/shared-workspace/tasks/ensure_staging_dir_exists.yml for localhost
+
+TASK [shared-workspace : Ensure shared workspace directory exists] *************
+ok: [localhost]
+
+TASK [Include role to provision SD card] ***************************************
+included: sd-provision for localhost
+
+TASK [sd-provision : Validate required vars] ***********************************
+included: /workspaces/sd-card-builder/roles/sd-provision/tasks/validate.yml for localhost
+
+TASK [sd-provision : debug] ****************************************************
+ok: [localhost] => {
+    "msg": {
+        "all_ipv4_addresses": [
+            "10.0.0.158",
+            "172.17.0.1"
+        ],
+        "all_ipv6_addresses": [
+            "fe80::6245:bdff:fe27:ea02"
+        ],
+        "ansible_local": {},
+        "apparmor": {
+            "status": "enabled"
+        },
+        "architecture": "x86_64",
+        "bios_date": "12/07/2018",
+        "bios_vendor": "American Megatrends Inc.",
+        "bios_version": "090008",
+        "board_asset_tag": "NA",
+        "board_name": "Virtual Machine",
+        "board_serial": "NA",
+        "board_vendor": "Microsoft Corporation",
+        "board_version": "7.0",
+        "chassis_asset_tag": "7783-7084-3265-9085-8269-3286-77",
+        "chassis_serial": "NA",
+        "chassis_vendor": "Microsoft Corporation",
+        "chassis_version": "7.0",
+        "cmdline": {
+            "BOOT_IMAGE": "/boot/vmlinuz-6.8.0-1027-azure",
+            "console": "ttyS0",
+            "earlyprintk": "ttyS0",
+            "nvme_core.io_timeout": "240",
+            "panic": "-1",
+            "ro": true,
+            "root": "PARTUUID=0a49d4ad-a5c4-4492-bd05-267b58f96d09"
+        },
+        "date_time": {
+            "date": "2025-07-18",
+            "day": "18",
+            "epoch": "1752834928",
+            "epoch_int": "1752834928",
+            "hour": "10",
+            "iso8601": "2025-07-18T10:35:28Z",
+            "iso8601_basic": "20250718T103528183327",
+            "iso8601_basic_short": "20250718T103528",
+            "iso8601_micro": "2025-07-18T10:35:28.183327Z",
+            "minute": "35",
+            "month": "07",
+            "second": "28",
+            "time": "10:35:28",
+            "tz": "UTC",
+            "tz_dst": "UTC",
+            "tz_offset": "+0000",
+            "weekday": "Friday",
+            "weekday_number": "5",
+            "weeknumber": "28",
+            "year": "2025"
+        },
+        "default_ipv4": {
+            "address": "10.0.0.158",
+            "alias": "eth0",
+            "broadcast": "",
+            "gateway": "10.0.0.1",
+            "interface": "eth0",
+            "macaddress": "60:45:bd:27:ea:02",
+            "mtu": 1500,
+            "netmask": "255.255.0.0",
+            "network": "10.0.0.0",
+            "prefix": "16",
+            "type": "ether"
+        },
+        "default_ipv6": {},
+        "device_links": {
+            "ids": {},
+            "labels": {},
+            "masters": {},
+            "uuids": {}
+        },
+        "devices": {
+            "loop0": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "none",
+                "sectors": 130568,
+                "sectorsize": "512",
+                "size": "63.75 MB",
+                "support_discard": "4096",
+                "vendor": null,
+                "virtual": 1
+            },
+            "loop1": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "none",
+                "sectors": 183096,
+                "sectorsize": "512",
+                "size": "89.40 MB",
+                "support_discard": "4096",
+                "vendor": null,
+                "virtual": 1
+            },
+            "loop2": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "none",
+                "sectors": 91024,
+                "sectorsize": "512",
+                "size": "44.45 MB",
+                "support_discard": "4096",
+                "vendor": null,
+                "virtual": 1
+            },
+            "loop3": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "0",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "none",
+                "sectors": 538968064,
+                "sectorsize": "512",
+                "size": "257.00 GB",
+                "support_discard": "512",
+                "vendor": null,
+                "virtual": 1
+            },
+            "loop4": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "0",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "none",
+                "sectors": 67108864,
+                "sectorsize": "512",
+                "size": "32.00 GB",
+                "support_discard": "4096",
+                "vendor": null,
+                "virtual": 1
+            },
+            "loop5": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "0",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "none",
+                "sectors": 1024000,
+                "sectorsize": "512",
+                "size": "500.00 MB",
+                "support_discard": "4096",
+                "vendor": null,
+                "virtual": 1
+            },
+            "loop6": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "none",
+                "sectors": 130592,
+                "sectorsize": "512",
+                "size": "63.77 MB",
+                "support_discard": "4096",
+                "vendor": null,
+                "virtual": 1
+            },
+            "loop7": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": null,
+                "partitions": {},
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "none",
+                "sectors": 0,
+                "sectorsize": "512",
+                "size": "0.00 Bytes",
+                "support_discard": "0",
+                "vendor": null,
+                "virtual": 1
+            },
+            "sda": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": "Virtual Disk",
+                "partitions": {
+                    "sda1": {
+                        "holders": [],
+                        "links": {
+                            "ids": [],
+                            "labels": [],
+                            "masters": [],
+                            "uuids": []
+                        },
+                        "sectors": 62689247,
+                        "sectorsize": 512,
+                        "size": "29.89 GB",
+                        "start": "227328",
+                        "uuid": null
+                    },
+                    "sda14": {
+                        "holders": [],
+                        "links": {
+                            "ids": [],
+                            "labels": [],
+                            "masters": [],
+                            "uuids": []
+                        },
+                        "sectors": 8192,
+                        "sectorsize": 512,
+                        "size": "4.00 MB",
+                        "start": "2048",
+                        "uuid": null
+                    },
+                    "sda15": {
+                        "holders": [],
+                        "links": {
+                            "ids": [],
+                            "labels": [],
+                            "masters": [],
+                            "uuids": []
+                        },
+                        "sectors": 217088,
+                        "sectorsize": 512,
+                        "size": "106.00 MB",
+                        "start": "10240",
+                        "uuid": null
+                    }
+                },
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "mq-deadline",
+                "sectors": 62916608,
+                "sectorsize": "512",
+                "size": "30.00 GB",
+                "support_discard": "2097152",
+                "vendor": "Msft",
+                "virtual": 1
+            },
+            "sdb": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": "Virtual Disk",
+                "partitions": {
+                    "sdb1": {
+                        "holders": [],
+                        "links": {
+                            "ids": [],
+                            "labels": [],
+                            "masters": [],
+                            "uuids": []
+                        },
+                        "sectors": 94367744,
+                        "sectorsize": 512,
+                        "size": "45.00 GB",
+                        "start": "2048",
+                        "uuid": null
+                    }
+                },
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "mq-deadline",
+                "sectors": 94371840,
+                "sectorsize": "512",
+                "size": "45.00 GB",
+                "support_discard": "2097152",
+                "vendor": "Msft",
+                "virtual": 1
+            },
+            "sdc": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": "Virtual Disk",
+                "partitions": {
+                    "sdc1": {
+                        "holders": [],
+                        "links": {
+                            "ids": [],
+                            "labels": [],
+                            "masters": [],
+                            "uuids": []
+                        },
+                        "sectors": 1073737728,
+                        "sectorsize": 512,
+                        "size": "512.00 GB",
+                        "start": "2048",
+                        "uuid": null
+                    }
+                },
+                "removable": "0",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "none",
+                "sectors": 1073741824,
+                "sectorsize": "512",
+                "size": "512.00 GB",
+                "support_discard": "2097152",
+                "vendor": "Msft",
+                "virtual": 1
+            },
+            "sr0": {
+                "holders": [],
+                "host": "",
+                "links": {
+                    "ids": [],
+                    "labels": [],
+                    "masters": [],
+                    "uuids": []
+                },
+                "model": "Virtual CD/ROM",
+                "partitions": {},
+                "removable": "1",
+                "rotational": "1",
+                "sas_address": null,
+                "sas_device_handle": null,
+                "scheduler_mode": "mq-deadline",
+                "sectors": 314,
+                "sectorsize": "2048",
+                "size": "628.00 KB",
+                "support_discard": "0",
+                "vendor": "Msft",
+                "virtual": 1
+            }
+        },
+        "discovered_interpreter_python": "/home/codespace/.python/current/bin/python3.12",
+        "distribution": "Ubuntu",
+        "distribution_file_parsed": true,
+        "distribution_file_path": "/etc/os-release",
+        "distribution_file_variety": "Debian",
+        "distribution_major_version": "20",
+        "distribution_release": "focal",
+        "distribution_version": "20.04",
+        "dns": {
+            "nameservers": [
+                "127.0.0.53",
+                "168.63.129.16"
+            ],
+            "options": {
+                "attempts": "5",
+                "timeout": "1"
+            },
+            "search": [
+                "oggtknk3dfburgckx5vdhlkald.cbrx.internal.cloudapp.net"
+            ]
+        },
+        "docker0": {
+            "active": false,
+            "device": "docker0",
+            "id": "8000.0242931253dd",
+            "interfaces": [],
+            "ipv4": {
+                "address": "172.17.0.1",
+                "broadcast": "172.17.255.255",
+                "netmask": "255.255.0.0",
+                "network": "172.17.0.0",
+                "prefix": "16"
+            },
+            "macaddress": "02:42:93:12:53:dd",
+            "mtu": 1500,
+            "promisc": false,
+            "speed": -1,
+            "stp": false,
+            "type": "bridge"
+        },
+        "domain": "",
+        "effective_group_id": 1000,
+        "effective_user_id": 1000,
+        "env": {
+            "BROWSER": "/vscode/bin/linux-x64/7adae6a56e34cb64d08899664b814cf620465925/bin/helpers/browser.sh",
+            "CLOUDENV_ENVIRONMENT_ID": "1436e669-53c0-46a6-8282-3c5a0a582b44",
+            "CODESPACES": "true",
+            "CODESPACE_NAME": "animated-space-parakeet-4j949gx5qq5c76v9",
+            "CODESPACE_VSCODE_FOLDER": "/workspaces/sd-card-builder",
+            "COLORTERM": "truecolor",
+            "CONDA_DIR": "/opt/conda",
+            "CONDA_SCRIPT": "/opt/conda/etc/profile.d/conda.sh",
+            "ContainerVersion": "13",
+            "DEBIAN_FLAVOR": "focal-scm",
+            "DOCKER_BUILDKIT": "1",
+            "DOTNET_ROOT": "/usr/share/dotnet",
+            "DOTNET_RUNNING_IN_CONTAINER": "true",
+            "DOTNET_SKIP_FIRST_TIME_EXPERIENCE": "1",
+            "DOTNET_USE_POLLING_FILE_WATCHER": "true",
+            "DYNAMIC_INSTALL_ROOT_DIR": "/opt",
+            "ENABLE_DYNAMIC_INSTALL": "true",
+            "GEM_HOME": "/usr/local/rvm/gems/ruby-3.4.1",
+            "GEM_PATH": "/usr/local/rvm/gems/ruby-3.4.1:/usr/local/rvm/gems/ruby-3.4.1@global",
+            "GITHUB_API_URL": "https://api.github.com",
+            "GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN": "app.github.dev",
+            "GITHUB_CODESPACE_TOKEN": "AEIIQQB6B4GMDYT2KKSFTTLIPKWWLANCNFSM4AOZUUKA",
+            "GITHUB_GRAPHQL_URL": "https://api.github.com/graphql",
+            "GITHUB_REPOSITORY": "gorttman/sd-card-builder",
+            "GITHUB_SERVER_URL": "https://github.com",
+            "GITHUB_TOKEN": "ghu_0wwciPro2N6VYRmTGK9yk7CjfbhdlG44Km3D",
+            "GITHUB_USER": "gorttman",
+            "GIT_ASKPASS": "/vscode/bin/linux-x64/7adae6a56e34cb64d08899664b814cf620465925/extensions/git/dist/askpass.sh",
+            "GIT_COMMITTER_EMAIL": "noreply@github.com",
+            "GIT_COMMITTER_NAME": "GitHub",
+            "GIT_EDITOR": "code --wait",
+            "GOPATH": "/go",
+            "GOROOT": "/usr/local/go",
+            "GRADLE_HOME": "/usr/local/sdkman/candidates/gradle/current",
+            "HOME": "/home/codespace",
+            "HOSTNAME": "codespaces-17e270",
+            "HUGO_DIR": "/usr/local/hugo/bin",
+            "HUGO_ROOT": "/home/codespace/.hugo",
+            "INTERNAL_VSCS_TARGET_URL": "https://australiacentral.online.visualstudio.com",
+            "IRBRC": "/usr/local/rvm/rubies/ruby-3.4.1/.irbrc",
+            "JAVA_HOME": "/usr/local/sdkman/candidates/java/current",
+            "JAVA_ROOT": "/home/codespace/java",
+            "JUPYTERLAB_PATH": "/home/codespace/.local/bin",
+            "LANG": "C.UTF-8",
+            "LESSCLOSE": "/usr/bin/lesspipe %s %s",
+            "LESSOPEN": "| /usr/bin/lesspipe %s",
+            "LS_COLORS": "rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:",
+            "MAVEN_HOME": "/usr/local/sdkman/candidates/maven/current",
+            "MAVEN_ROOT": "/home/codespace/.maven",
+            "MY_RUBY_HOME": "/usr/local/rvm/rubies/ruby-3.4.1",
+            "NODE_ROOT": "/home/codespace/nvm",
+            "NPM_GLOBAL": "/home/codespace/.npm-global",
+            "NUGET_XMLDOC_MODE": "skip",
+            "NVM_BIN": "/usr/local/share/nvm/versions/node/v22.15.0/bin",
+            "NVM_CD_FLAGS": "",
+            "NVM_DIR": "/usr/local/share/nvm",
+            "NVM_INC": "/usr/local/share/nvm/versions/node/v22.15.0/include/node",
+            "NVM_SYMLINK_CURRENT": "true",
+            "NVS_DIR": "/usr/local/nvs",
+            "NVS_HOME": "/usr/local/nvs",
+            "NVS_OS": "linux",
+            "NVS_ROOT": "/usr/local/nvs",
+            "NVS_USE_XZ": "1",
+            "OLDPWD": "/",
+            "ORYX_DIR": "/usr/local/oryx",
+            "ORYX_ENV_TYPE": "vsonline-present",
+            "ORYX_PREFER_USER_INSTALLED_SDKS": "true",
+            "ORYX_SDK_STORAGE_BASE_URL": "https://oryx-cdn.microsoft.io",
+            "PATH": "/usr/local/rvm/gems/ruby-3.4.1/bin:/usr/local/rvm/gems/ruby-3.4.1@global/bin:/usr/local/rvm/rubies/ruby-3.4.1/bin:/vscode/bin/linux-x64/7adae6a56e34cb64d08899664b814cf620465925/bin/remote-cli:/home/codespace/.local/bin:/home/codespace/.dotnet:/home/codespace/nvm/current/bin:/home/codespace/.php/current/bin:/home/codespace/.python/current/bin:/home/codespace/java/current/bin:/home/codespace/.ruby/current/bin:/home/codespace/.local/bin:/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/jupyter:/usr/local/oryx:/usr/local/go/bin:/go/bin:/usr/local/sdkman/bin:/usr/local/sdkman/candidates/java/current/bin:/usr/local/sdkman/candidates/gradle/current/bin:/usr/local/sdkman/candidates/maven/current/bin:/usr/local/sdkman/candidates/ant/current/bin:/usr/local/rvm/gems/default/bin:/usr/local/rvm/gems/default@global/bin:/usr/local/rvm/rubies/default/bin:/usr/local/share/rbenv/bin:/usr/local/php/current/bin:/opt/conda/bin:/usr/local/nvs:/usr/local/share/nvm/versions/node/v22.15.0/bin:/usr/local/hugo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/share/dotnet:/home/codespace/.dotnet/tools:/usr/local/rvm/bin",
+            "PHP_PATH": "/usr/local/php/current",
+            "PHP_ROOT": "/home/codespace/.php",
+            "PIPX_BIN_DIR": "/usr/local/py-utils/bin",
+            "PIPX_HOME": "/usr/local/py-utils",
+            "PROMPT_DIRTRIM": "4",
+            "PWD": "/workspaces/sd-card-builder",
+            "PYTHONIOENCODING": "UTF-8",
+            "PYTHON_BASIC_REPL": "1",
+            "PYTHON_PATH": "/usr/local/python/current",
+            "PYTHON_ROOT": "/home/codespace/.python",
+            "RAILS_DEVELOPMENT_HOSTS": ".githubpreview.dev,.preview.app.github.dev,.app.github.dev",
+            "RUBY_HOME": "/usr/local/rvm/rubies/default",
+            "RUBY_ROOT": "/home/codespace/.ruby",
+            "RUBY_VERSION": "ruby-3.4.1",
+            "RVM_PATH": "/usr/local/rvm",
+            "RepositoryName": "sd-card-builder",
+            "SDKMAN_CANDIDATES_API": "https://api.sdkman.io/2",
+            "SDKMAN_CANDIDATES_DIR": "/usr/local/sdkman/candidates",
+            "SDKMAN_DIR": "/usr/local/sdkman",
+            "SDKMAN_PLATFORM": "linuxx64",
+            "SHELL": "/bin/bash",
+            "SHELL_LOGGED_IN": "true",
+            "SHLVL": "3",
+            "TERM": "xterm-256color",
+            "TERM_PROGRAM": "vscode",
+            "TERM_PROGRAM_VERSION": "1.102.1",
+            "USER": "codespace",
+            "VSCODE_GIT_ASKPASS_EXTRA_ARGS": "",
+            "VSCODE_GIT_ASKPASS_MAIN": "/vscode/bin/linux-x64/7adae6a56e34cb64d08899664b814cf620465925/extensions/git/dist/askpass-main.js",
+            "VSCODE_GIT_ASKPASS_NODE": "/vscode/bin/linux-x64/7adae6a56e34cb64d08899664b814cf620465925/node",
+            "VSCODE_GIT_IPC_HANDLE": "/tmp/vscode-git-2b9ebeaaea.sock",
+            "VSCODE_IPC_HOOK_CLI": "/tmp/vscode-ipc-0242088d-48a4-45dc-a9b3-f9065c0199e3.sock",
+            "_": "/usr/local/py-utils/bin/ansible-playbook",
+            "rvm_bin_path": "/usr/local/rvm/bin",
+            "rvm_path": "/usr/local/rvm",
+            "rvm_prefix": "/usr/local",
+            "rvm_version": "1.29.12 (latest)"
+        },
+        "eth0": {
+            "active": true,
+            "device": "eth0",
+            "ipv4": {
+                "address": "10.0.0.158",
+                "broadcast": "",
+                "netmask": "255.255.0.0",
+                "network": "10.0.0.0",
+                "prefix": "16"
+            },
+            "ipv6": [
+                {
+                    "address": "fe80::6245:bdff:fe27:ea02",
+                    "prefix": "64",
+                    "scope": "link"
+                }
+            ],
+            "macaddress": "60:45:bd:27:ea:02",
+            "module": "hv_netvsc",
+            "mtu": 1500,
+            "pciid": "6045bd27-ea02-6045-bd27-ea026045bd27",
+            "promisc": false,
+            "speed": 50000,
+            "type": "ether"
+        },
+        "fibre_channel_wwn": [],
+        "fips": false,
+        "flags": [
+            "fpu",
+            "vme",
+            "de",
+            "pse",
+            "tsc",
+            "msr",
+            "pae",
+            "mce",
+            "cx8",
+            "apic",
+            "sep",
+            "mtrr",
+            "pge",
+            "mca",
+            "cmov",
+            "pat",
+            "pse36",
+            "clflush",
+            "mmx",
+            "fxsr",
+            "sse",
+            "sse2",
+            "ht",
+            "syscall",
+            "nx",
+            "mmxext",
+            "fxsr_opt",
+            "pdpe1gb",
+            "rdtscp",
+            "lm",
+            "constant_tsc",
+            "rep_good",
+            "nopl",
+            "tsc_reliable",
+            "nonstop_tsc",
+            "cpuid",
+            "extd_apicid",
+            "aperfmperf",
+            "tsc_known_freq",
+            "pni",
+            "pclmulqdq",
+            "ssse3",
+            "fma",
+            "cx16",
+            "pcid",
+            "sse4_1",
+            "sse4_2",
+            "movbe",
+            "popcnt",
+            "aes",
+            "xsave",
+            "avx",
+            "f16c",
+            "rdrand",
+            "hypervisor",
+            "lahf_lm",
+            "cmp_legacy",
+            "svm",
+            "cr8_legacy",
+            "abm",
+            "sse4a",
+            "misalignsse",
+            "3dnowprefetch",
+            "osvw",
+            "topoext",
+            "vmmcall",
+            "fsgsbase",
+            "bmi1",
+            "avx2",
+            "smep",
+            "bmi2",
+            "erms",
+            "invpcid",
+            "rdseed",
+            "adx",
+            "smap",
+            "clflushopt",
+            "clwb",
+            "sha_ni",
+            "xsaveopt",
+            "xsavec",
+            "xgetbv1",
+            "xsaves",
+            "user_shstk",
+            "clzero",
+            "xsaveerptr",
+            "rdpru",
+            "arat",
+            "npt",
+            "nrip_save",
+            "tsc_scale",
+            "vmcb_clean",
+            "flushbyasid",
+            "decodeassists",
+            "pausefilter",
+            "pfthreshold",
+            "v_vmsave_vmload",
+            "umip",
+            "vaes",
+            "vpclmulqdq",
+            "rdpid",
+            "fsrm"
+        ],
+        "form_factor": "Desktop",
+        "fqdn": "localhost",
+        "gather_subset": [
+            "all"
+        ],
+        "hostname": "codespaces-17e270",
+        "hostnqn": "",
+        "interfaces": [
+            "eth0",
+            "lo",
+            "docker0"
+        ],
+        "is_chroot": false,
+        "iscsi_iqn": "",
+        "kernel": "6.8.0-1027-azure",
+        "kernel_version": "#32~22.04.1-Ubuntu SMP Thu Apr  3 20:26:27 UTC 2025",
+        "lo": {
+            "active": true,
+            "device": "lo",
+            "ipv4": {
+                "address": "127.0.0.1",
+                "broadcast": "",
+                "netmask": "255.0.0.0",
+                "network": "127.0.0.0",
+                "prefix": "8"
+            },
+            "ipv6": [
+                {
+                    "address": "::1",
+                    "prefix": "128",
+                    "scope": "host"
+                }
+            ],
+            "mtu": 65536,
+            "promisc": false,
+            "type": "loopback"
+        },
+        "loadavg": {
+            "15m": 0.28,
+            "1m": 0.07,
+            "5m": 0.23
+        },
+        "locally_reachable_ips": {
+            "ipv4": [
+                "10.0.0.158",
+                "127.0.0.0/8",
+                "127.0.0.1",
+                "172.17.0.1"
+            ],
+            "ipv6": [
+                "::1",
+                "fe80::6245:bdff:fe27:ea02"
+            ]
+        },
+        "lsb": {
+            "codename": "focal",
+            "description": "Ubuntu 20.04.6 LTS",
+            "id": "Ubuntu",
+            "major_release": "20",
+            "release": "20.04"
+        },
+        "lvm": "N/A",
+        "machine": "x86_64",
+        "machine_id": "a805963b59cf494abf3fed4013ec52fe",
+        "memfree_mb": 253,
+        "memory_mb": {
+            "nocache": {
+                "free": 5434,
+                "used": 2504
+            },
+            "real": {
+                "free": 253,
+                "total": 7938,
+                "used": 7685
+            },
+            "swap": {
+                "cached": 0,
+                "free": 0,
+                "total": 0,
+                "used": 0
+            }
+        },
+        "memtotal_mb": 7938,
+        "module_setup": true,
+        "mounts": [
+            {
+                "block_available": 3944341,
+                "block_size": 4096,
+                "block_total": 7574544,
+                "block_used": 3630203,
+                "device": "/dev/root",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 3645386,
+                "inode_total": 3870720,
+                "inode_used": 225334,
+                "mount": "/usr/sbin/docker-init",
+                "options": "ro,relatime,discard,errors=remount-ro,bind",
+                "passno": 0,
+                "size_available": 16156020736,
+                "size_total": 31025332224,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 10389958,
+                "block_size": 4096,
+                "block_total": 11531989,
+                "block_used": 1142031,
+                "device": "/dev/sdb1",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 2949079,
+                "inode_total": 2949120,
+                "inode_used": 41,
+                "mount": "/tmp",
+                "options": "rw,relatime,bind",
+                "passno": 0,
+                "size_available": 42557267968,
+                "size_total": 47235026944,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 3944341,
+                "block_size": 4096,
+                "block_total": 7574544,
+                "block_used": 3630203,
+                "device": "/dev/root",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 3645386,
+                "inode_total": 3870720,
+                "inode_used": 225334,
+                "mount": "/vscode",
+                "options": "rw,relatime,discard,errors=remount-ro,bind",
+                "passno": 0,
+                "size_available": 16156020736,
+                "size_total": 31025332224,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 2069426,
+                "block_size": 4096,
+                "block_total": 8211920,
+                "block_used": 6142494,
+                "device": "/dev/loop4",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 1505111,
+                "inode_total": 2097152,
+                "inode_used": 592041,
+                "mount": "/workspaces",
+                "options": "rw,nodev,relatime,bind",
+                "passno": 0,
+                "size_available": 8476368896,
+                "size_total": 33636024320,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 3944341,
+                "block_size": 4096,
+                "block_total": 7574544,
+                "block_used": 3630203,
+                "device": "/dev/root",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 3645386,
+                "inode_total": 3870720,
+                "inode_used": 225334,
+                "mount": "/.codespaces/bin",
+                "options": "rw,relatime,discard,errors=remount-ro,bind",
+                "passno": 0,
+                "size_available": 16156020736,
+                "size_total": 31025332224,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 2069426,
+                "block_size": 4096,
+                "block_total": 8211920,
+                "block_used": 6142494,
+                "device": "/dev/loop4",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 1505111,
+                "inode_total": 2097152,
+                "inode_used": 592041,
+                "mount": "/etc/resolv.conf",
+                "options": "rw,nodev,relatime,bind",
+                "passno": 0,
+                "size_available": 8476368896,
+                "size_total": 33636024320,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 2069426,
+                "block_size": 4096,
+                "block_total": 8211920,
+                "block_used": 6142494,
+                "device": "/dev/loop4",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 1505111,
+                "inode_total": 2097152,
+                "inode_used": 592041,
+                "mount": "/etc/hostname",
+                "options": "rw,nodev,relatime,bind",
+                "passno": 0,
+                "size_available": 8476368896,
+                "size_total": 33636024320,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 2069426,
+                "block_size": 4096,
+                "block_total": 8211920,
+                "block_used": 6142494,
+                "device": "/dev/loop4",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 1505111,
+                "inode_total": 2097152,
+                "inode_used": 592041,
+                "mount": "/etc/hosts",
+                "options": "rw,nodev,relatime,bind",
+                "passno": 0,
+                "size_available": 8476368896,
+                "size_total": 33636024320,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 2069426,
+                "block_size": 4096,
+                "block_total": 8211920,
+                "block_used": 6142494,
+                "device": "/dev/loop4",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 1505111,
+                "inode_total": 2097152,
+                "inode_used": 592041,
+                "mount": "/home/vscode/.minikube",
+                "options": "rw,nodev,relatime,bind",
+                "passno": 0,
+                "size_available": 8476368896,
+                "size_total": 33636024320,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 2069426,
+                "block_size": 4096,
+                "block_total": 8211920,
+                "block_used": 6142494,
+                "device": "/dev/loop4",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 1505111,
+                "inode_total": 2097152,
+                "inode_used": 592041,
+                "mount": "/var/lib/docker",
+                "options": "rw,nodev,relatime,bind",
+                "passno": 0,
+                "size_available": 8476368896,
+                "size_total": 33636024320,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 2069426,
+                "block_size": 4096,
+                "block_total": 8211920,
+                "block_used": 6142494,
+                "device": "/dev/loop4",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 1505111,
+                "inode_total": 2097152,
+                "inode_used": 592041,
+                "mount": "/workspaces/.codespaces/.persistedshare",
+                "options": "rw,nodev,relatime,bind",
+                "passno": 0,
+                "size_available": 8476368896,
+                "size_total": 33636024320,
+                "uuid": "N/A"
+            },
+            {
+                "block_available": 3944341,
+                "block_size": 4096,
+                "block_total": 7574544,
+                "block_used": 3630203,
+                "device": "/dev/root",
+                "dump": 0,
+                "fstype": "ext4",
+                "inode_available": 3645386,
+                "inode_total": 3870720,
+                "inode_used": 225334,
+                "mount": "/workspaces/.codespaces/shared",
+                "options": "rw,relatime,discard,errors=remount-ro,bind",
+                "passno": 0,
+                "size_available": 16156020736,
+                "size_total": 31025332224,
+                "uuid": "N/A"
+            }
+        ],
+        "nodename": "codespaces-17e270",
+        "os_family": "Debian",
+        "pkg_mgr": "apt",
+        "proc_cmdline": {
+            "BOOT_IMAGE": "/boot/vmlinuz-6.8.0-1027-azure",
+            "console": [
+                "tty1",
+                "ttyS0"
+            ],
+            "earlyprintk": "ttyS0",
+            "nvme_core.io_timeout": "240",
+            "panic": "-1",
+            "ro": true,
+            "root": "PARTUUID=0a49d4ad-a5c4-4492-bd05-267b58f96d09"
+        },
+        "processor": [
+            "0",
+            "AuthenticAMD",
+            "AMD EPYC 7763 64-Core Processor",
+            "1",
+            "AuthenticAMD",
+            "AMD EPYC 7763 64-Core Processor"
+        ],
+        "processor_cores": 1,
+        "processor_count": 1,
+        "processor_nproc": 2,
+        "processor_threads_per_core": 2,
+        "processor_vcpus": 2,
+        "product_name": "Virtual Machine",
+        "product_serial": "NA",
+        "product_uuid": "11b464e4-b6ab-7a42-bd92-9047f8671ed4",
+        "product_version": "7.0",
+        "python": {
+            "executable": "/home/codespace/.python/current/bin/python3.12",
+            "has_sslcontext": true,
+            "type": "cpython",
+            "version": {
+                "major": 3,
+                "micro": 1,
+                "minor": 12,
+                "releaselevel": "final",
+                "serial": 0
+            },
+            "version_info": [
+                3,
+                12,
+                1,
+                "final",
+                0
+            ]
+        },
+        "python_version": "3.12.1",
+        "real_group_id": 1000,
+        "real_user_id": 1000,
+        "selinux": {
+            "status": "disabled"
+        },
+        "selinux_python_present": true,
+        "service_mgr": "docker-init",
+        "ssh_host_key_ecdsa_public": "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBHiz5QV4E7UAgG/vaw8z6ckofXO4sVE9FGJqCmztgPK0sK+BflUqtwsmm9WMGrMdTGqendjgDXTZ+QvPcxLmuT4=",
+        "ssh_host_key_ecdsa_public_keytype": "ecdsa-sha2-nistp256",
+        "ssh_host_key_ed25519_public": "AAAAC3NzaC1lZDI1NTE5AAAAIHnio3V3iitF8CaqDn7oE0PJpf8AH/7dKWmOl7x7qABL",
+        "ssh_host_key_ed25519_public_keytype": "ssh-ed25519",
+        "ssh_host_key_rsa_public": "AAAAB3NzaC1yc2EAAAADAQABAAABgQC0ytPlxe8Ns+YbtIu0Tu5R17EAPx7IXxF53PTly+b7OZMlciJOvRxZeYuaCQRN4CkXbgTneKwD3Xjp87B+EstNHaAhJrCbnFwD7Z0d7DsOrxG8gCrtxSPLLw73VaGeRWXt3Kh+3HdXoiCQmBTLhOwiBqvqozR2YjKQFkzJ/ohh7I74zD8HiT/OXycr2dKkXxi+g0BbBgTyWFtMy4Hd3QisbjgKSpMafsdBPewgMm2+mdOBqKmTgbjQhpxAueJg2dM7QtktJKtMpUWtMYX++wxESh+rt7FThsaPX4K/FbeaM+uAM/IqY6wXEAfefCnOzcL8FuzRvlbzA4nYdMkAqZ8xk2UnHjp/0cScX5k9uHXSSKUJKpRWgeG34EGUzTgrPC+YvbPUpCv4gzJi/nw9U35eU7KLFfewMUuLXVQDdeVq7RlSp43ITrh03Q43Rg8GogUN9tw8iP11/xXUBdPA/o+wqJExPZ+DmIkdc6UEy+WwvDZsd38lAR3zmhWMJBri1cc=",
+        "ssh_host_key_rsa_public_keytype": "ssh-rsa",
+        "swapfree_mb": 0,
+        "swaptotal_mb": 0,
+        "system": "Linux",
+        "system_capabilities": [
+            ""
+        ],
+        "system_capabilities_enforced": "True",
+        "system_vendor": "Microsoft Corporation",
+        "uptime_seconds": 8400,
+        "user_dir": "/home/codespace",
+        "user_gecos": "",
+        "user_gid": 1000,
+        "user_id": "codespace",
+        "user_shell": "/bin/bash",
+        "user_uid": 1000,
+        "userspace_architecture": "x86_64",
+        "userspace_bits": "64",
+        "virtualization_role": "guest",
+        "virtualization_tech_guest": [
+            "container",
+            "docker",
+            "VirtualPC"
+        ],
+        "virtualization_tech_host": [
+            "kvm"
+        ],
+        "virtualization_type": "docker"
+    }
+}
+
+TASK [sd-provision : Validate required variables] ******************************
+fatal: [localhost]: FAILED! => {
+    "assertion": "wifi.ssid is defined",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "Missing required vars: wifi_ssid, wifi_psk, or hostname."
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=9    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+

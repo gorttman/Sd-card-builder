@@ -1,13 +1,40 @@
 #cloud-config
+preserve_hostname: false
 hostname: {{ hostname }}
-manage_etc_hosts: true
+timezone: {{ timezone }}
+
 users:
-  - name: pi
+{% for user in users %}
+  - name: {{ user.name }}
+    groups: {% for group in user.groups %}, {{ group }}{% endfor %}
+    shell: {{ user.user_shell }}
     sudo: ALL=(ALL) NOPASSWD:ALL
-    groups: users, admin
-    shell: /bin/bash
     lock_passwd: false
-    plain_text_passwd: 'raspberry'
-ssh_pwauth: true
+    passwd: "{{ user.password }}"
+{% endfor %}
+
+write_files:
+  - path: "{{ staging_dir }}/etc/wpa_supplicant/wpa_supplicant.conf"
+    owner: root:root
+    permissions: '0644'
+    content: |
+      ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+      update_config=1
+      country=AU
+
+      network={
+        ssid="{{ wifi.ssid }}"
+        psk="{{ wifi.password }}"
+        key_mgmt=WPA-PSK
+      }
+
+{% for group in sudo_groups %}
+  - path: "{{ staging_dir }}/etc/sudoers.d/{{ group.name }}"
+    owner: root:root
+    permissions: '0440'
+    content: |
+      %{{ group.name }} {{ group.sudo }}
+{% endfor %}
+
 runcmd:
-  - [ cloud-init-per, once, boot-done, echo, "Boot complete" ]
+  - [ cloud-init-per, once, run-ansible, ansible-playbook, {{ playbook_path }}, -i, localhost, --connection=local ]

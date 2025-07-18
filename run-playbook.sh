@@ -1,16 +1,6 @@
 #!/bin/bash
-
 set -euo pipefail
-
-# Where am I running
-cat /proc/mounts  | grep --quiet -i overlay 
-if [[ $? == 0 ]]; then 
-  ANSIBLE_BINARY_PATH="/usr/local/py-utils/bin"
-else
-  ANSIBLE_BINARY_PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin"
-fi
-
-# Vars for use in both loading requirements and in running ansible-playbook
+ANSIBLE_BINARY_PATH="/usr/local/py-utils/bin"
 REQS_FILE="./roles/requirements.yml"
 INVENTORY_FILE="variables/cli/hosts.ini"
 EXTRA_VARS_DIR="variables/cli"
@@ -25,11 +15,11 @@ fi
 PLAYBOOK_FILE="$1"
 
 if [[ $# -ge 2 ]]; then
-  REQS_FILE="$2"
+  INV_LIMIT="$2"
 fi
 
 if [[ $# -ge 3 ]]; then
-  INVENTORY_FILE="$3"
+  TAGS="$3"
 fi
 
 if [[ $# -ge 4 ]]; then
@@ -47,6 +37,14 @@ else
 fi
 
 CMD=("${ANSIBLE_PLAYBOOK}" "${PLAYBOOK_FILE}" -i "${INVENTORY_FILE}")
+
+if [[ -n "${INV_LIMIT:-}" ]]; then
+  CMD+=(--limit="${INV_LIMIT}")
+fi
+
+if [[ -n "${TAGS:-}" ]]; then 
+  CMD+=(--tags $"${TAGS}")
+fi
 
 if [[ -f "${EXTRA_VARS_FILE}" ]]; then
   echo "Using extra vars: ${EXTRA_VARS_FILE}"

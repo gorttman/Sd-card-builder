@@ -1,0 +1,3 @@
+{% for group in sudo_groups %}
+%{{ group.name }} {{ group.sudo }}
+{% endfor %}

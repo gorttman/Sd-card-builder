@@ -1,8 +1,0 @@
----
-- name: Generate cloud-init meta-data file
-  ansible.builtin.copy:
-    content: |
-      instance-id: {{ hostname }}
-      local-hostname: {{ hostname }}
-    dest: "{{ staging_dir }}/meta-data"
-    mode: '0644'

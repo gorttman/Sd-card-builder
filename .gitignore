@@ -5,3 +5,4 @@ roles/shared*
 !roles/requirements.yml
 *.zip
 *cli*
+*data*

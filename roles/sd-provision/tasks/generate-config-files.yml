@@ -1,0 +1,9 @@
+---
+- name: Generate templated file; "{{ item.name }}"
+  ansible.builtin.template:
+    src: "templates/{{ item.src }}/{{ item.name }}.j2"
+    dest: "{{ staging_dir }}/{{ item.dest }}/{{ item.name }}"
+    mode: "{{ item.mode }}"
+  loop: "{{ required_files }}"
+  loop_control:
+    label: "{{ item.name }}"

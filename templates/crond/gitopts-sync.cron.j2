@@ -1,0 +1,1 @@
+{{ gitops.sync_interval | default('*/5 * * * *') }} root {{ staging_dir.rstrip('/') }}/usr/local/bin/gitops-apply.sh >> /var/log/gitops.log 2>&1

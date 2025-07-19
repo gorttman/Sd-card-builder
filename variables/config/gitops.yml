@@ -1,0 +1,6 @@
+gitops:
+  repo_url: "https://github.com/youruser/your-repo"
+  branch: "main"
+  pat: "{{ vault_git_pat }}"  # Comes from secrets.yml
+  sync_interval: "*/5 * * * *"
+  kubectl_path: "/usr/local/bin/k3s kubectl"

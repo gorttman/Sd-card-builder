@@ -1,3 +1,8 @@
 ---
 workspace_path: "/tmp/sd-card/{{ hostname }}"
 wpa_country: AU
+# execution_host_type: >-
+#  {% if ansible_facts['system'] == 'Darwin' %}macos
+#  {% elif lookup('env', 'CODESPACES') == 'true' %}codespaces
+#  {% else %}undefined
+#  {% endif %}

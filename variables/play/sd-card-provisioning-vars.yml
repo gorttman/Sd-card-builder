@@ -1,7 +1,10 @@
 ---
 hostname: "pi-0"
-
-staging_dir: "/tmp/{{  ansible_play_name | replace(' ', '-') | lower }}"
+staging_dir: >-
+    {%- if  'codespaces' in ansible_facts.env.HOSTNAME  %}/tmp/{{ ansible_play_name | replace(' ', '-') | lower }}
+    {%- elif ansible_facts.os_family == 'Darwin' -%}~/{{ ansible_play_name | replace(' ', '-') | lower }}
+    {%- else -%}undefined
+    {%- endif -%}
 
 variable_files:
   - name: pi_defaults
@@ -16,3 +19,7 @@ variable_files:
     path: config
   - name: users
     path: config
+  - name: sd-card-os
+    path: config
+
+node_role: 'master'

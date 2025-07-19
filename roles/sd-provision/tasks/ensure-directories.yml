@@ -1,0 +1,7 @@
+---
+- name: Ensure required subdirectories exist under staging_dir
+  ansible.builtin.file:
+    path: "{{ staging_dir.rstrip('/') }}{{ item }}"
+    state: directory
+    recurse: true
+  loop: "{{ required_directories }}"

@@ -1,0 +1,33 @@
+---
+required_directories:
+  - "/etc/wpa_supplicant"
+  - "/etc/sudoers.d"
+  - "/etc/cron.d"
+  - "/usr/local/bin"
+  - "/etc/boot/ignition/"
+
+required_files:
+  - name: wpa_supplicant.conf
+    src: network/
+    dest: "/etc/wpa_supplicant"
+    mode: '0600'
+  - name: sudoers
+    src: users/
+    dest: "/etc/sudoers.d"
+    mode: '0440'
+  - name: gitopts-sync.cron
+    src: crond/
+    dest: "/etc/cron.d/"
+    mode: '0644'
+  - name: user-data
+    src: cloud-init/
+    dest: "/etc/boot/ignition/"
+    mode: '0644'
+  - name: meta-data
+    src: cloud-init/
+    dest: "/etc/boot/ignition/"
+    mode: '0644'
+  - name: meta-data
+    src: cloud-init/
+    dest: "/etc"
+    mode: '0644'

@@ -6,7 +6,7 @@ timezone: {{ timezone }}
 users:
 {% for user in users %}
   - name: {{ user.name }}
-    groups: {% for group in user.groups %}, {{ group }}{% endfor %}
+    groups:{% for group in user.groups %} {{ group }}{% if not loop.last %},{% endif %}{% endfor %}
     shell: {{ user.user_shell }}
     sudo: ALL=(ALL) NOPASSWD:ALL
     lock_passwd: false
@@ -14,9 +14,9 @@ users:
 {% endfor %}
 
 write_files:
-  - path: "{{ staging_dir }}/etc/wpa_supplicant/wpa_supplicant.conf"
-    owner: root:root
+  - path: "{{ staging_dir.rstrip('/') }}/etc/wpa_supplicant/wpa_supplicant.conf"
     permissions: '0644'
+    owner: root:root
     content: |
       ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
       update_config=1
@@ -29,12 +29,30 @@ write_files:
       }
 
 {% for group in sudo_groups %}
-  - path: "{{ staging_dir }}/etc/sudoers.d/{{ group.name }}"
-    owner: root:root
+  - path: "{{ staging_dir.rstrip('/') }}/etc/sudoers.d/{{ group.name }}"
     permissions: '0440'
+    owner: root:root
     content: |
       %{{ group.name }} {{ group.sudo }}
 {% endfor %}
 
+  - path: "{{ staging_dir.rstrip('/') }}/etc/node-role"
+    permissions: '0644'
+    owner: root:root
+    content: "{{ node_role }}"
+
+{% if node_role == 'manager' %}
+  - path: "{{ staging_dir.rstrip('/') }}/usr/local/bin/gitops-apply.sh"
+    permissions: '0755'
+    owner: root:root
+    content: "{{ lookup('template', 'templates/cloud-init/gitops/gitops-apply.sh.j2') | indent(6) }}"
+
+  - path: "{{ staging_dir.rstrip('/') }}/etc/cron.d/gitops-sync"
+    permissions: '0644'
+    owner: root:root
+    content: "{{ lookup('template', 'templates/crond/gitops-sync.cron.j2') | indent(6) }}"
+{% endif %}
+
 runcmd:
   - [ cloud-init-per, once, run-ansible, ansible-playbook, {{ playbook_path }}, -i, localhost, --connection=local ]
+  - [ cloud-init-per, once, run-gitops, {{ staging_dir.rstrip('/') }}/usr/local/bin/gitops-apply.sh ]
